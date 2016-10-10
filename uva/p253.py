@@ -12,7 +12,9 @@ def rotate_around_x_axis(dice):
     return dice[4] + dice[0] + dice[2] + dice[3] + dice[5] + dice[1]
 
 
-def bfs_search_dice(goal_dice, queue, visited = []):
+def bfs_search_dice(goal_dice, queue, visited):
+    """Explores if a dice, which is to be sent as [dice] in
+    queue-parameter, can be turned to a given goal_dice"""
     if not queue:
         return "FALSE"
     dice = queue.pop(0)
@@ -27,6 +29,6 @@ def bfs_search_dice(goal_dice, queue, visited = []):
 
 
 for dices in sys.stdin:
-    if len(dices) > 4:
-        dice1, dice2 = dices[0:6].strip(), dices[6:12].strip()
+    if dices != "\n":
+        dice1, dice2 = dices[0:6], dices[6:12]
         print(bfs_search_dice(dice2, [dice1], []))
